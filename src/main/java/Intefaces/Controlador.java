@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author sebav
+ * @author Lamorxa
  */
 public interface Controlador <T> 
 
