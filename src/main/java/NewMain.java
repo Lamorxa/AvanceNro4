@@ -7,7 +7,7 @@
  *
  * @author LamorxaXD
  */
-import Vistas.Login;
+import Vistas.FrmLogin;
 public class NewMain {
 
     /**
@@ -15,8 +15,9 @@ public class NewMain {
      */
     public static void main(String[] args) {
         
-        Login login= new Login();
+        FrmLogin login= new FrmLogin();
         login.setVisible(true);
+        
     }
     
 }

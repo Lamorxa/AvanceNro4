@@ -8,13 +8,12 @@ import Intefaces.Controlador;
 import conexion.Conexion;
 import java.util.List;
 import javax.swing.JOptionPane;
-import servicios.ExtractorArchivos;
 
 /**
  *
  * @author LamorxaXD
  */
-public class Unidades implements Controlador{
+public class Unidades  {
     private String codUnidad;
     private String dni;
     private int idRuta;
@@ -72,68 +71,5 @@ public Unidades(){}
         this.estado = estado;
     }
 
-    @Override
-    public List consultarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Object consultarPorID(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List consultarPorNombres(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-@Override
-public int insertar(Object obj) {
-    Unidades nuevaUnidad = (Unidades) obj;
-    Conexion objConexion = new Conexion();
-    objConexion.crearConexion();
-    objConexion.ejecutarSentenciaSQL("insert into unidades values ('"
-            + nuevaUnidad.getCodUnidad() + "','"
-            + nuevaUnidad.getDni() + "','"
-            + nuevaUnidad.getIdRuta() + "','"
-            + nuevaUnidad.getCodSoat() + "','"
-            + nuevaUnidad.getEstado() + "')"
-    );
-    objConexion.cierraConsultas();
-    JOptionPane.showMessageDialog(null, "Unidad Grabada con Éxito!!!",
-            "Grabando", JOptionPane.INFORMATION_MESSAGE);
-    ExtractorArchivos.tmpUnidades.agregar(nuevaUnidad);
-    return 0;
-}
-
-@Override
-public int actualizar(Object obj, String CodUnidad) {
-    Unidades editado = (Unidades) obj;
-    Conexion objConexion = new Conexion();
-    objConexion.crearConexion();
-    ExtractorArchivos.tmpUnidades.reemplazar(editado, CodUnidad);
-    objConexion.ejecutarSentenciaSQL(
-            "UPDATE unidades SET "
-                    + "Dni='" + editado.getDni() + "', "
-                    + "IdRuta='" + editado.getIdRuta() + "', "
-                    + "CodSoat='" + editado.getCodSoat() + "', "
-                    + "estado='" + editado.getEstado() + "' "
-                    + "WHERE CodUnidad='" + CodUnidad + "'");
-    JOptionPane.showMessageDialog(null, "Unidad Editada con Éxito!!!",
-            "Editando", JOptionPane.INFORMATION_MESSAGE);
-    objConexion.cierraConsultas();
-    return 0;
-}
-
-@Override
-public int eliminar(Object obj) {
-    Unidades eliminado = (Unidades) obj;
-    Conexion objconexion = new Conexion();
-    objconexion.crearConexion();
-    ExtractorArchivos.tmpUnidades.eliminar(String.valueOf(eliminado.getCodUnidad()));
-    objconexion.ejecutarSentenciaSQL("DELETE FROM unidades WHERE CodUnidad='" + eliminado.getCodUnidad() + "'");
-    JOptionPane.showMessageDialog(null, "Unidad Eliminada con Éxito!!!",
-            "Eliminado", JOptionPane.INFORMATION_MESSAGE);
-    objconexion.cierraConsultas();
-    return 0;
-}  
+   
 }

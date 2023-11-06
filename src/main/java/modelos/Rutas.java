@@ -8,14 +8,13 @@ import Intefaces.Controlador;
 import conexion.Conexion;
 import java.util.List;
 import javax.swing.JOptionPane;
-import servicios.ExtractorArchivos;
 
 /**
  *
  * @author LamorxaXD
  */
 
-   public class Rutas implements Controlador{
+   public class Rutas {
     private int idRuta;
     private String nombreRuta;
     private double montoRuta;
@@ -63,66 +62,7 @@ import servicios.ExtractorArchivos;
         this.estado = estado;
     }
 
-    @Override
-    public List consultarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Object consultarPorID(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List consultarPorNombres(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public int insertar(Object obj) {
-    Rutas nuevaRuta = (Rutas) obj;
-    Conexion objConexion = new Conexion();
-    objConexion.crearConexion();
-    objConexion.ejecutarSentenciaSQL("INSERT INTO rutas VALUES ('"
-            + String.valueOf(nuevaRuta.getIdRuta()) + "','"
-            + nuevaRuta.getNombreRuta() + "','"
-            + String.valueOf(nuevaRuta.getMontoRuta()) + "','"
-            + nuevaRuta.getEstado() + "')"
-    );
-    objConexion.cierraConsultas();
-    JOptionPane.showMessageDialog(null, "Ruta Grabada con Éxito!!!", "Grabando", JOptionPane.INFORMATION_MESSAGE);
-    ExtractorArchivos.tmpRutas.agregar(nuevaRuta);
-    return 0;
-}
-    @Override
-    public int actualizar(Object obj, String IdRuta) {
-    Rutas editado = (Rutas) obj;
-    Conexion objConexion = new Conexion();
-    objConexion.crearConexion();
-    ExtractorArchivos.tmpRutas.reemplazar(editado, IdRuta);
-    objConexion.ejecutarSentenciaSQL("UPDATE rutas SET "
-        + "NombreRuta='" + editado.getNombreRuta()+ "', "
-        + "MontoRuta=" + editado.getMontoRuta()+ ", "
-        + "estado='" + editado.getEstado()+ "' "
-        + "WHERE IdRuta=" + Integer.parseInt(IdRuta));
-    JOptionPane.showMessageDialog(null, "Ruta Editada con Éxito!!!",
-        "Editando", JOptionPane.INFORMATION_MESSAGE);
-    objConexion.cierraConsultas();
-    return 0;
-}
-
-
-    @Override
-   public int eliminar(Object obj) {
-    Rutas eliminado = (Rutas) obj;
-    conexion.Conexion objconexion = new Conexion();
-    objconexion.crearConexion();
-    ExtractorArchivos.tmpRutas.eliminar(String.valueOf(eliminado.getIdRuta()));
-    objconexion.ejecutarSentenciaSQL("DELETE FROM rutas WHERE IdRuta=" + eliminado.getIdRuta());
-    JOptionPane.showMessageDialog(null, "Ruta Eliminada con Éxito!!!", "Eliminado", JOptionPane.INFORMATION_MESSAGE);
-    objconexion.cierraConsultas();
-    return 0;
-}
+    
     
 }
 

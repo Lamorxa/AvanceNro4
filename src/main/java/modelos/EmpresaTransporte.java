@@ -7,13 +7,12 @@ package modelos;
 import conexion.Conexion;
 import java.util.List;
 import javax.swing.JOptionPane;
-import servicios.ExtractorArchivos;
 
 /**
  *
  * @author LamorxaXD
  */
-public class EmpresaTransporte implements Intefaces.Controlador{
+public class EmpresaTransporte  {
     private String rucEmpresa;
     private String nombreEmpresa;
     private String color;
@@ -63,67 +62,4 @@ public class EmpresaTransporte implements Intefaces.Controlador{
         this.estado = estado;
     }
 
-    @Override
-    public List consultarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Object consultarPorID(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List consultarPorNombres(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public int insertar(Object obj) {
-        EmpresaTransporte nuevaempresa= (EmpresaTransporte) obj;
-        Conexion objConexion= new Conexion();
-        objConexion.crearConexion();
-        objConexion.ejecutarSentenciaSQL("insert into empresatransporte values ('"
-                +nuevaempresa.getRucEmpresa() + "','"
-                + nuevaempresa.getNombreEmpresa()+ "','"
-                + nuevaempresa.getColor()+ "','"
-                +nuevaempresa.getEstado()+ "')"
-                );
-         objConexion.cierraConsultas();
-        JOptionPane.showMessageDialog(null, "Empresa Grabado con Exito!!!",
-                "Grabando", JOptionPane.INFORMATION_MESSAGE);
-        ExtractorArchivos.tmpEmpresaTransporte.agregar(nuevaempresa);
-        return 0;
-    }
-
-    @Override
-    public int actualizar(Object obj, String Ruc) {
-        EmpresaTransporte editado = (EmpresaTransporte) obj;
-         Conexion objConexion = new Conexion();
-         objConexion.crearConexion();
-         ExtractorArchivos.tmpEmpresaTransporte.reemplazar(editado, Ruc);
-         objConexion.ejecutarSentenciaSQL("UPDATE empresatransporte SET "
-            + "RucEmpresa='" + editado.getRucEmpresa()+ "', "
-            + "NombreEmpresa='" + editado.getNombreEmpresa()+ "', "
-            + "Color='" + editado.getColor()+ "', "
-            + "estado='" + editado.getEstado()+ "' "
-            + "WHERE RucEmpresa='" + Ruc + "'");
-      JOptionPane.showMessageDialog(null, "Empresa Editado con Exito!!!",
-                "Editando", JOptionPane.INFORMATION_MESSAGE);
-      objConexion.cierraConsultas();
-        return 0;
-    }
-
-    @Override
-    public int eliminar(Object obj) {
-       EmpresaTransporte eliminado=(EmpresaTransporte) obj;
-       conexion.Conexion objconexion= new Conexion();
-       objconexion.crearConexion();
-       ExtractorArchivos.tmpEmpresaTransporte.eliminar(eliminado.getRucEmpresa());
-       objconexion.ejecutarSentenciaSQL("DELETE FROM empresatransporte WHERE RucEmpresa='" + eliminado.getRucEmpresa() + "'");
-       JOptionPane.showMessageDialog(null, "Cliente Eliminado con Exito!!!",
-                "Eliminado", JOptionPane.INFORMATION_MESSAGE);
-       objconexion.cierraConsultas();
-         return 0;
-         }
 }
